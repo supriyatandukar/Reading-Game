@@ -61,29 +61,31 @@ async function chooseNextLocation(){
         await slowPrint("Press Enter to continue.");
 
         stage = "chapter2";
-
         return;
-
     }
 
     await slowPrint("");
-
-    await slowPrint("Where would you like to search next?");
-
+    await slowPrint("════════════════════════════");
+    await slowPrint("Where will you search next?");
+    await slowPrint("════════════════════════════");
     await slowPrint("");
+    await slowPrint("Type one of these locations:");
 
     if(!forestVisited)
-        await slowPrint("forest");
+        await slowPrint("> forest");
 
     if(!pathVisited)
-        await slowPrint("path");
+        await slowPrint("> path");
 
     if(!playgroundVisited)
-        await slowPrint("playground");
+        await slowPrint("> playground");
+
+    await slowPrint("");
+    await slowPrint("Press Enter after typing your choice.");
 
     stage = "chapter1";
-
 }
+
 
 async function gameLogic(inputText){
 
@@ -104,10 +106,9 @@ async function gameLogic(inputText){
             await slowPrint("How to Play");
 
             await slowPrint("• Read carefully.");
-            await slowPrint("• Type the choices exactly as shown.");
-            await slowPrint("• Explore every location.");
-            await slowPrint("• Every memory reveals another piece of the truth.");
-
+            await slowPrint("• Whenever choices appear, type the exact word shown (for example: forest).");
+            await slowPrint("• Press Enter or click Submit to continue.");
+            await slowPrint("• Explore every location to uncover the truth.");
             await slowPrint("");
 
             await slowPrint("What is your name?");
@@ -229,9 +230,19 @@ async function gameLogic(inputText){
 
             await slowPrint("");
 
-            await slowPrint("forest");
-            await slowPrint("path");
-            await slowPrint("playground");
+            await slowPrint("Where would you like to search?");
+
+            await slowPrint("");
+            
+            await slowPrint("Type one of the following:");
+            
+            await slowPrint("> forest")
+            await slowPrint("> path")
+            await slowPrint("> playground");
+            
+            await slowPrint("");
+            
+            await slowPrint("Example: Type 'forest' and press Enter.");
 
             stage = "chapter1";
 
@@ -239,7 +250,9 @@ async function gameLogic(inputText){
 
         case "chapter1":
 
-            // LOCATION STORIES GO HERE
+        await chooseNextLocation();
+
+
 
             break;
 
