@@ -14,7 +14,7 @@ The only thing you know is...
 
 > **Keep searching.**
 
-As you explore different places, you'll uncover forgotten memories and slowly piece together the truth. But be careful—things aren't always what they seem.
+As you explore different places, you'll uncover forgotten memories and slowly piece together the truth. But be careful! Things aren't always what they seem.
 
 ## 🛠️ Built With
 * HTML
