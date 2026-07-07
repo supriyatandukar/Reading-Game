@@ -47,43 +47,78 @@ async function chooseNextLocation(){
     if(forestVisited && pathVisited && playgroundVisited){
 
         await slowPrint("");
+        await slowPrint("════════════════════════════");
+        await slowPrint("Search Complete");
+        await slowPrint("════════════════════════════");
+        await slowPrint("");
+
         await slowPrint("The strange feeling inside you grows stronger.");
         await slowPrint("Every place you've visited feels connected...");
-        await slowPrint("As if each one was trying to remind you of something.");
+        await slowPrint("As if each memory is leading you somewhere.");
+
         await slowPrint("");
+
         await slowPrint("Through the thinning fog...");
         await slowPrint("An old building slowly comes into view.");
+
         await slowPrint("");
+
+        await slowPrint("The faded sign reads:");
+
         await slowPrint("\"POLICE STATION\"");
+
         await slowPrint("");
-        await slowPrint("Maybe your answers are waiting inside.");
+
+        await slowPrint("Perhaps your answers are waiting inside.");
+
         await slowPrint("");
+
         await slowPrint("Press Enter to continue.");
 
         stage = "chapter2";
+
         return;
+
     }
 
     await slowPrint("");
+
     await slowPrint("════════════════════════════");
-    await slowPrint("Where will you search next?");
+    await slowPrint("Places to Search");
     await slowPrint("════════════════════════════");
-    await slowPrint("");
-    await slowPrint("Type one of these locations:");
-
-    if(!forestVisited)
-        await slowPrint("> forest");
-
-    if(!pathVisited)
-        await slowPrint("> path");
-
-    if(!playgroundVisited)
-        await slowPrint("> playground");
 
     await slowPrint("");
-    await slowPrint("Press Enter after typing your choice.");
+
+    await slowPrint(
+        forestVisited
+        ? "[✓] Forest"
+        : "[ ] Forest"
+    );
+
+    await slowPrint(
+        pathVisited
+        ? "[✓] Stone Path"
+        : "[ ] Stone Path"
+    );
+
+    await slowPrint(
+        playgroundVisited
+        ? "[✓] Playground"
+        : "[ ] Playground"
+    );
+
+    await slowPrint("");
+
+    await slowPrint("Type the place you want to visit.");
+
+    await slowPrint("");
+
+    await slowPrint("Example:");
+
+    await slowPrint("> forest");
 
     stage = "chapter1";
+
 }
 
 
@@ -228,43 +263,53 @@ async function gameLogic(inputText){
 
             await slowPrint("Three places catch your attention.");
 
-            await slowPrint("");
-
-            await slowPrint("Where would you like to search?");
-
-            await slowPrint("");
-            
-            await slowPrint("Type one of the following:");
-            
-            await slowPrint("> forest")
-            await slowPrint("> path")
-            await slowPrint("> playground");
-            
-            await slowPrint("");
-            
-            await slowPrint("Example: Type 'forest' and press Enter.");
-
             stage = "chapter1";
 
+            await chooseNextLocation();
+
             break;
 
+        
         case "chapter1":
-
-        await chooseNextLocation();
-
-
-
-            break;
-
-        case "chapter2":
-
-            await slowPrint("Chapter II coming next...");
-
-            stage = "done";
-
-            break;
-
-    }
+          if(inputText === "forest" && !forestVisited){
+            forestVisited = true;
+            await slowPrint("You walk deeper into the forest.");
+            await slowPrint("Every tree seems older than the last.");
+            await slowPrint("A tiny blue shoe lies beneath the fallen leaves.");
+            await slowPrint("The moment you touch it, a memory flashes...");
+            await slowPrint("\"Slow down!\"");
+            await slowPrint("A warm voice laughs.");
+            await slowPrint("The memory disappears as quickly as it came.");
+            await chooseNextLocation();
+          }
+          
+          else if(inputText === "path" && !pathVisited){
+            pathVisited = true;
+            await slowPrint("You follow the cracked stone path.");
+            await slowPrint("A rusty tricycle rests beside the road.");
+            await slowPrint("You touch it.");
+            await slowPrint("\"You're doing great!\"");
+            await slowPrint("\"WAIT! DON'T GO TOO FAR!\"");
+            await slowPrint("The memory suddenly fades.");
+            await chooseNextLocation();
+          }
+          
+          else if(inputText === "playground" && !playgroundVisited){
+            playgroundVisited = true;
+            await slowPrint("An abandoned playground emerges from the fog.");
+            await slowPrint("A faded teddy bear sits alone on a bench.");
+            await slowPrint("\"Don't forget Buttons!\"");
+            await slowPrint("The name feels familiar...");
+            await chooseNextLocation();
+          }
+          
+          else{
+            await slowPrint("Please type one of the available places.");
+            await chooseNextLocation();
+          }
+          
+          break;
+        }
 
 }
 
@@ -288,3 +333,6 @@ input.addEventListener("keydown",(e)=>{
         submitBtn.click();
 
 });
+
+// Start the game automatically
+gameLogic("");
