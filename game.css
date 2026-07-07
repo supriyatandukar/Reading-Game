@@ -1,0 +1,55 @@
+body {
+  background-color: #000;
+  color: #e5e5e5;
+  font-family: 'Courier New', monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#game-container {
+  width: 80%;
+  max-width: 700px;
+  background-color: #111;
+  padding: 20px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #900;
+}
+
+#output {
+  height: 400px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+#input-area {
+  display: flex;
+  margin-top: 10px;
+}
+
+#player-input {
+  flex: 1;
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+#submit-btn {
+  background: #900;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+#submit-btn:hover {
+  background: #c00;
+}
+
+
